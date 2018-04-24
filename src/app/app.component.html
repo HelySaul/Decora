@@ -1,0 +1,14 @@
+<div>
+  <mat-toolbar role="header">
+    <img src="/assets/img/logo.png" class="logo">
+    <span class="fill-remaining-space"></span>
+    <ol *ngIf="!showLogout">
+      <button mat-raised-button (click)="openSignInModal()">Login</button>
+      <button mat-raised-button (click)="openSignUpModal()">Create User</button>
+    </ol>
+    <ol *ngIf="showLogout">
+      <button mat-raised-button (click)="onLogout()">Logout</button>
+    </ol>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</div>

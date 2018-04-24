@@ -1,0 +1,23 @@
+<div mat-dialog-content>
+  <mat-toolbar><span>Create User</span></mat-toolbar><br>
+  <mat-form-field>
+    <input matInput placeholder="Full name" [formControl]="fullnameControl" [(ngModel)]="user.fullname">
+    <mat-error *ngIf="fullnameControl.invalid">{{getFullnameErrorMessage()}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Email" [formControl]="emailControl" [(ngModel)]="user.email">
+    <mat-error *ngIf="emailControl.invalid">{{getEmailErrorMessage()}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Phone" [formControl]="phoneControl" [(ngModel)]="user.phone">
+    <mat-error *ngIf="emailControl.invalid">{{getPhoneErrorMessage()}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Password" type="password" [formControl]="passwordControl" [(ngModel)]="user.password">
+    <mat-error *ngIf="emailControl.invalid">{{getPasswordErrorMessage()}}</mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onRegister()">Register!</button>
+</div>

@@ -1,0 +1,14 @@
+.parallax {
+  background: linear-gradient(rgba(0,0,0, 0.5), rgba(0,0,0, 0.5)), url("/assets/img/background.jpg");
+  min-height: calc(100vh - 64px);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.description {
+  height:100vh;
+  background-color:#F5F5F5;
+  font-size:36px
+}
