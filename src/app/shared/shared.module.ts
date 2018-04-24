@@ -2,7 +2,13 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
   MatButtonModule,
-  MatDialogModule, MatFormFieldModule, MatInputModule, MatSidenavModule, MatSnackBarModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSidenavModule,
+  MatSnackBarModule,
   MatToolbarModule
 } from '@angular/material';
 
@@ -16,6 +22,8 @@ import {
     MatSidenavModule,
     MatButtonModule,
     MatSnackBarModule,
+    MatExpansionModule,
+    MatDividerModule
   ],
   exports: [
     CommonModule,
@@ -25,7 +33,9 @@ import {
     MatInputModule,
     MatSidenavModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatExpansionModule,
+    MatDividerModule
   ],
   declarations: []
 })

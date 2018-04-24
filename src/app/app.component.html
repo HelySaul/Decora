@@ -3,11 +3,11 @@
     <img src="/assets/img/logo.png" class="logo">
     <span class="fill-remaining-space"></span>
     <ol *ngIf="!showLogout">
-      <button mat-raised-button (click)="openSignInModal()">Login</button>
-      <button mat-raised-button (click)="openSignUpModal()">Create User</button>
+      <button mat-raised-button (click)="openSignInModal()">Entrar</button>
+      <button mat-raised-button (click)="openSignUpModal()">Cadastre-se</button>
     </ol>
     <ol *ngIf="showLogout">
-      <button mat-raised-button (click)="onLogout()">Logout</button>
+      <button mat-raised-button (click)="onLogout()">Sair</button>
     </ol>
   </mat-toolbar>
   <router-outlet></router-outlet>

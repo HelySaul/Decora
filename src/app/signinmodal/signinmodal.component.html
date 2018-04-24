@@ -1,15 +1,15 @@
 <div mat-dialog-content>
-  <mat-toolbar><span>Login</span></mat-toolbar><br>
+  <mat-toolbar><span>Entrar</span></mat-toolbar><br>
   <mat-form-field>
     <input matInput placeholder="Email" [formControl]="emailControl" [(ngModel)]="login.email">
-    <mat-error *ngIf="emailControl.invalid">{{getEmailErrorMessage()}}</mat-error>
+    <mat-error *ngIf="emailControl.invalid">{{getEmailErro()}}</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Password" type="password" [formControl]="passwordControl" [(ngModel)]="login.password">
-    <mat-error *ngIf="passwordControl.invalid">{{getPasswordErrorMessage()}}</mat-error>
+    <input matInput placeholder="Senha" type="password" [formControl]="senhaControl" [(ngModel)]="login.password">
+    <mat-error *ngIf="senhaControl.invalid">{{getSenhaErro()}}</mat-error>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button (click)="onLogin()">Lets Continue!</button>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-button (click)="onEntrar()">Continuar</button>
 </div>

@@ -1,14 +1,36 @@
-<div class="register">
-  Registrarion date: {{user.registrationDate}}
-</div>
-<div class="maindiv">
-  <div class="icon">
-    <i class="far fa-frown"></i>
-  </div>
-  <div class="description">
-    <h3>{{user.fullname}}, We feel sorry.</h3>
-    <p>
-      The online shopping will be available soon.
-    </p>
-  </div>
+<div class="user-list">
+  <mat-toolbar>Hello</mat-toolbar>
+  <div class="space"></div>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Personal data
+        </mat-panel-title>
+        <mat-panel-description>
+          Type your name and age
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-form-field>
+        <input matInput placeholder="First name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Age">
+      </mat-form-field>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Self aware panel
+        </mat-panel-title>
+        <mat-panel-description>
+          Currently I am {{panelOpenState ? 'open' : 'closed'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>I'm visible because I am open</p>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>

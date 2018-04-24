@@ -5,6 +5,14 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  h2 {
+    width: 100%;
+    text-align: center;
+    padding-top: calc((100vh - 64px) / 2  );
+    color: white;
+  }
+
 }
 
 .description {

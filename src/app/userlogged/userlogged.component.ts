@@ -22,28 +22,11 @@ export class UserloggedComponent implements OnInit{
   user: User = new User();
   users: Observable<any[]>;
 
-  constructor(public db: AngularFireDatabase, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe(params => {
-      setTimeout(() => {
-        const id = params['id'];
-        this.users = this.db.list('/users').valueChanges();
-        this.users.subscribe(usersList => {
-          let userExists: boolean = false;
-          usersList.forEach(user => {
-            if (user.content.id == id){
-              userExists = true;
-              this.user = user.content;
-            }
-          });
-          if (!userExists) {
-            this.router.navigate(['']);
-          }
-        });
-      }, 1000);
-    });
+
   }
 
 }

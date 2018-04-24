@@ -1,23 +1,23 @@
 <div mat-dialog-content>
-  <mat-toolbar><span>Create User</span></mat-toolbar><br>
+  <mat-toolbar><span>Cadastre-se</span></mat-toolbar><br>
   <mat-form-field>
-    <input matInput placeholder="Full name" [formControl]="fullnameControl" [(ngModel)]="user.fullname">
-    <mat-error *ngIf="fullnameControl.invalid">{{getFullnameErrorMessage()}}</mat-error>
+    <input matInput placeholder="Nome" [formControl]="nomeControl" [(ngModel)]="user.nome">
+    <mat-error *ngIf="nomeControl.invalid">{{getNomeErro()}}</mat-error>
   </mat-form-field>
   <mat-form-field>
     <input matInput placeholder="Email" [formControl]="emailControl" [(ngModel)]="user.email">
-    <mat-error *ngIf="emailControl.invalid">{{getEmailErrorMessage()}}</mat-error>
+    <mat-error *ngIf="emailControl.invalid">{{getEmailErro()}}</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Phone" [formControl]="phoneControl" [(ngModel)]="user.phone">
-    <mat-error *ngIf="emailControl.invalid">{{getPhoneErrorMessage()}}</mat-error>
+    <input matInput placeholder="Telefone" [formControl]="telefoneControl" [(ngModel)]="user.telefone">
+    <mat-error *ngIf="emailControl.invalid">{{getTelefoneErro()}}</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Password" type="password" [formControl]="passwordControl" [(ngModel)]="user.password">
-    <mat-error *ngIf="emailControl.invalid">{{getPasswordErrorMessage()}}</mat-error>
+    <input matInput placeholder="Senha" type="password" [formControl]="senhaControl" [(ngModel)]="user.password">
+    <mat-error *ngIf="emailControl.invalid">{{getSenhaErro()}}</mat-error>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button (click)="onRegister()">Register!</button>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-button (click)="onRegister()">Cadastrar</button>
 </div>
