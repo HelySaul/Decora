@@ -1,10 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialog} from "@angular/material";
+import {MatDialog} from '@angular/material';
 import {SigninmodalComponent} from './signinmodal/signinmodal.component';
-import {SignupmodalComponent} from "./signupmodal/signupmodal.component";
-import {ActivatedRoute, Router} from "@angular/router";
+import {SignupmodalComponent} from './signupmodal/signupmodal.component';
+import {Router} from '@angular/router';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch'
+import 'rxjs/add/operator/catch';
+import {User} from './shared/shared-classes';
+import {LoginService} from './services/login/login-service';
 
 @Component({
   selector: 'app-root',
@@ -15,17 +17,17 @@ export class AppComponent implements OnInit {
 
   showLogout: boolean = false;
 
-  constructor(public dialog: MatDialog, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(public dialog: MatDialog, private router: Router, private loginService: LoginService) {
   }
 
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe(params => {
-      if (params['id']) {
-        this.showLogout = true;
-      } else {
-        this.showLogout = false;
-      }
-    });
+    const mainAdmin = new User();
+    mainAdmin.nome = 'Admin';
+    mainAdmin.email = 'admin@decora.do';
+    mainAdmin.senha = 'admin';
+    mainAdmin.telefone = 123456789;
+    mainAdmin.isAdmin = true;
+    this.loginService.addFirstAdmin(mainAdmin);
   }
 
   onLogout(): void {

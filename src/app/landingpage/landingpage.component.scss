@@ -1,22 +1,18 @@
-.parallax {
-  background: linear-gradient(rgba(0,0,0, 0.5), rgba(0,0,0, 0.5)), url("/assets/img/background.jpg");
+.main {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/assets/img/background.jpg");
   min-height: calc(100vh - 64px);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 
-  h2 {
+  .content {
+
+    position: absolute;
     width: 100%;
+    top: calc((100vh - 226px) /2);
+    background-color: rgba(255,255,255, 0.5);
     text-align: center;
-    padding-top: calc((100vh - 64px) / 2  );
-    color: white;
   }
 
-}
-
-.description {
-  height:100vh;
-  background-color:#F5F5F5;
-  font-size:36px
 }

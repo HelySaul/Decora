@@ -1,16 +1,11 @@
 import {Component, NgModule} from '@angular/core';
-import {MatDialogRef, MatSnackBar} from "@angular/material";
-import {FormControl, FormsModule, Validators} from "@angular/forms";
-import {AngularFireDatabase} from "angularfire2/database";
-import {Observable} from "rxjs/Observable";
-import {Router} from "@angular/router";
+import {MatDialogRef, MatSnackBar} from '@angular/material';
+import {FormControl, FormsModule, Validators} from '@angular/forms';
+import {Observable} from 'rxjs/Observable';
+import {Router} from '@angular/router';
+import {User, Response} from '../shared/shared-classes';
+import {LoginService} from '../services/login/login-service';
 
-export class User {
-  nome: string;
-  email: string;
-  senha: string;
-  telefone: number;
-}
 
 @Component({
   selector: 'app-signinmodal',
@@ -22,7 +17,7 @@ export class SignupmodalComponent {
 
   user: User = new User();
 
-  regexSoNumeros: RegExp = new RegExp("^[0-9]*$");
+  regexSoNumeros: RegExp = new RegExp('^[0-9]*$');
   nomeControl = new FormControl('', [Validators.required, Validators.minLength(3)]);
   emailControl = new FormControl('', [Validators.required, Validators.email, Validators.nullValidator]);
   telefoneControl = new FormControl('', [Validators.required, Validators.pattern(this.regexSoNumeros)]);
@@ -31,7 +26,7 @@ export class SignupmodalComponent {
   users: Observable<any[]>;
 
   constructor(public dialogRef: MatDialogRef<SignupmodalComponent>, public snackBar: MatSnackBar,
-              private router: Router) {
+              private router: Router, private loginService: LoginService) {
   }
 
   onCancel(): void {
@@ -57,22 +52,22 @@ export class SignupmodalComponent {
     return this.senhaControl.hasError('required') ? 'Deve digitar uma senha' : '';
   }
 
-  getData(): string {
-    const todayDate = new Date();
-    return (todayDate.getFullYear() + '/' + ((todayDate.getMonth() + 1)) + '/' + todayDate.getDate() + ' ' + todayDate.getHours() + ':' + todayDate.getMinutes() + ':' + todayDate.getSeconds());
-  }
-
   onRegister(): void {
     if (!this.nomeControl.invalid && !this.emailControl.invalid && !this.telefoneControl.invalid && !this.senhaControl.invalid) {
-
-      this.snackBar.open('Tem que preencher tuda a informação', 'Fechar');
+      this.user.isAdmin = false;
+      const response: Response = this.loginService.addUser(this.user);
+      if (response.ok) {
+        this.router.navigate(['user']);
+      } else {
+        this.snackBar.open(response.message, 'Fechar');
+      }
     }
   }
 
 }
 
 @NgModule({
-  declarations: [SignupmodalComponent],
+  declarations: [],
   imports: [FormsModule],
   exports: []
 })

@@ -1,9 +1,7 @@
 import {Component, NgModule} from '@angular/core';
-import {MatDialogRef, MatSnackBar} from "@angular/material";
-import {Router} from "@angular/router";
-import {FormControl, Validators} from "@angular/forms";
-import {Observable} from "rxjs/Observable";
-import {AngularFireDatabase} from "angularfire2/database";
+import {MatDialogRef, MatSnackBar} from '@angular/material';
+import {Router} from '@angular/router';
+import {FormControl, Validators} from '@angular/forms';
 
 export class Login {
   email: string;
@@ -46,7 +44,7 @@ export class SigninmodalComponent {
 }
 
 @NgModule({
-  declarations: [SigninmodalComponent],
+  declarations: [],
   imports: [],
   exports: []
 })
