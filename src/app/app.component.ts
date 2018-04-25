@@ -15,9 +15,7 @@ import {LoginService} from './services/login/login-service';
 })
 export class AppComponent implements OnInit {
 
-  showLogout: boolean = false;
-
-  constructor(public dialog: MatDialog, private router: Router, private loginService: LoginService) {
+  constructor(public dialog: MatDialog, private router: Router, public loginService: LoginService) {
   }
 
   ngOnInit() {
@@ -27,10 +25,13 @@ export class AppComponent implements OnInit {
     mainAdmin.senha = 'admin';
     mainAdmin.telefone = 123456789;
     mainAdmin.isAdmin = true;
+    mainAdmin.isActive = false;
     this.loginService.addFirstAdmin(mainAdmin);
+
   }
 
   onLogout(): void {
+    this.loginService.logout();
     this.router.navigate(['']);
   }
 

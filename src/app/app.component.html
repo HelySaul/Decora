@@ -2,11 +2,11 @@
   <mat-toolbar role="header">
     <img src="/assets/img/logo.png" class="logo">
     <span class="fill-remaining-space"></span>
-    <ol *ngIf="!showLogout">
+    <ol *ngIf="!loginService.isAnyUserActive()">
       <button mat-raised-button (click)="openSignInModal()">Entrar</button>
       <button mat-raised-button (click)="openSignUpModal()">Cadastre-se</button>
     </ol>
-    <ol *ngIf="showLogout">
+    <ol *ngIf="loginService.isAnyUserActive()">
       <button mat-raised-button (click)="onLogout()">Sair</button>
     </ol>
   </mat-toolbar>

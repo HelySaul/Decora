@@ -2,11 +2,8 @@ import {Component, NgModule} from '@angular/core';
 import {MatDialogRef, MatSnackBar} from '@angular/material';
 import {Router} from '@angular/router';
 import {FormControl, Validators} from '@angular/forms';
-
-export class Login {
-  email: string;
-  senha: string;
-}
+import {Login} from "../shared/shared-classes";
+import {LoginService} from "../services/login/login-service";
 
 @Component({
   selector: 'app-signinmodal',
@@ -19,7 +16,8 @@ export class SigninmodalComponent {
   emailControl = new FormControl('', [Validators.required, Validators.email, Validators.nullValidator]);
   senhaControl = new FormControl('', [Validators.required, Validators.nullValidator]);
 
-  constructor(public dialogRef: MatDialogRef<SigninmodalComponent>, public router: Router, public snackBar: MatSnackBar) {
+  constructor(public dialogRef: MatDialogRef<SigninmodalComponent>, public router: Router, public snackBar: MatSnackBar,
+              private loginService: LoginService) {
   }
 
   onCancel(): void {
@@ -27,15 +25,19 @@ export class SigninmodalComponent {
   }
 
   onEntrar(): void {
-    if(!this.emailControl.invalid && !this.senhaControl.invalid){
-      this.snackBar.open('Email ou senha errada', 'Fechar');
+    if (!this.emailControl.invalid && !this.senhaControl.invalid) {
+      if(this.loginService.login(this.login).ok){
+        this.dialogRef.close();
+        this.router.navigate(['user']);
+      }else {
+        this.snackBar.open('Email ou senha errada', 'Fechar');
+      }
     }
   }
 
   getEmailErro(): string {
     return this.emailControl.hasError('required') ? 'Deve digitar um email' :
-      this.emailControl.hasError('email') ? 'Email invalido' :
-        '';
+      this.emailControl.hasError('email') ? 'Email invalido' : '';
   }
 
   getSenhaErro(): string {

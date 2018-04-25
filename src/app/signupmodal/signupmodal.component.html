@@ -1,5 +1,6 @@
 <div mat-dialog-content>
-  <mat-toolbar><span>Cadastre-se</span></mat-toolbar><br>
+  <mat-toolbar><span>Cadastre-se</span></mat-toolbar>
+  <br>
   <mat-form-field>
     <input matInput placeholder="Nome" [formControl]="nomeControl" [(ngModel)]="user.nome">
     <mat-error *ngIf="nomeControl.invalid">{{getNomeErro()}}</mat-error>
@@ -13,9 +14,10 @@
     <mat-error *ngIf="emailControl.invalid">{{getTelefoneErro()}}</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Senha" type="password" [formControl]="senhaControl" [(ngModel)]="user.password">
+    <input matInput placeholder="Senha" type="password" [formControl]="senhaControl" [(ngModel)]="user.senha">
     <mat-error *ngIf="emailControl.invalid">{{getSenhaErro()}}</mat-error>
   </mat-form-field>
+  <mat-checkbox *ngIf="showActiveControl()" [(ngModel)]="user.isAdmin">Administrador</mat-checkbox>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancelar</button>

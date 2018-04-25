@@ -1,4 +1,4 @@
-import {Component, NgModule} from '@angular/core';
+import {Component, EventEmitter, NgModule} from '@angular/core';
 import {MatDialogRef, MatSnackBar} from '@angular/material';
 import {FormControl, FormsModule, Validators} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
@@ -16,6 +16,7 @@ import {LoginService} from '../services/login/login-service';
 export class SignupmodalComponent {
 
   user: User = new User();
+  onAdd = new EventEmitter();
 
   regexSoNumeros: RegExp = new RegExp('^[0-9]*$');
   nomeControl = new FormControl('', [Validators.required, Validators.minLength(3)]);
@@ -54,14 +55,32 @@ export class SignupmodalComponent {
 
   onRegister(): void {
     if (!this.nomeControl.invalid && !this.emailControl.invalid && !this.telefoneControl.invalid && !this.senhaControl.invalid) {
-      this.user.isAdmin = false;
+      this.user.isActive = false;
+      if (typeof this.user.isAdmin == "undefined")
+        this.user.isAdmin = false;
       const response: Response = this.loginService.addUser(this.user);
       if (response.ok) {
-        this.router.navigate(['user']);
+        this.dialogRef.close();
+        if (this.user.isActive) {
+          this.router.navigate(['user']);
+        } else {
+          this.onAdd.emit();
+          this.snackBar.open(response.message, 'Fechar');
+        }
       } else {
         this.snackBar.open(response.message, 'Fechar');
       }
     }
+  }
+
+  showActiveControl() {
+    if (this.loginService.isAnyUserActive()) {
+      if (this.loginService.getActiveUser().isAdmin) {
+        return true;
+      }
+      return false;
+    }
+    return false;
   }
 
 }
