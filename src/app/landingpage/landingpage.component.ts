@@ -1,9 +1,9 @@
 import {Component, NgModule, OnInit} from '@angular/core';
-import {MatDialog, MatSnackBar} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {SigninmodalComponent} from '../signinmodal/signinmodal.component';
 import {SignupmodalComponent} from '../signupmodal/signupmodal.component';
-import {LoginService} from "../services/login/login-service";
-import {Route, Router} from "@angular/router";
+import {LoginService} from '../services/login/login-service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-landingpage',
@@ -13,7 +13,7 @@ import {Route, Router} from "@angular/router";
 
 export class LandingpageComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, public snackBar: MatSnackBar, public loginService: LoginService, public router: Router) {}
+  constructor(public dialog: MatDialog, public loginService: LoginService, public router: Router) {}
 
   ngOnInit() {
     if(this.loginService.isAnyUserActive()){

@@ -2,8 +2,8 @@ import {Component, NgModule} from '@angular/core';
 import {MatDialogRef, MatSnackBar} from '@angular/material';
 import {Router} from '@angular/router';
 import {FormControl, Validators} from '@angular/forms';
-import {Login} from "../shared/shared-classes";
-import {LoginService} from "../services/login/login-service";
+import {Login} from '../shared/shared-classes';
+import {LoginService} from '../services/login/login-service';
 
 @Component({
   selector: 'app-signinmodal',
@@ -26,10 +26,10 @@ export class SigninmodalComponent {
 
   onEntrar(): void {
     if (!this.emailControl.invalid && !this.senhaControl.invalid) {
-      if(this.loginService.login(this.login).ok){
+      if (this.loginService.login(this.login).ok) {
         this.dialogRef.close();
         this.router.navigate(['user']);
-      }else {
+      } else {
         this.snackBar.open('Email ou senha errada', 'Fechar', {
           duration: 3000
         });
