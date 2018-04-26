@@ -18,11 +18,11 @@ export class LoginService {
         userExists = true;
       }
     });
-    if(userExists) {
+    if (userExists) {
       response.ok = false;
       response.message = 'O email já está registrado';
       return response;
-    }else {
+    } else {
       this.users.push(user);
       localStorage.setItem('userList', JSON.stringify(this.users));
       response.ok = true;
@@ -45,14 +45,14 @@ export class LoginService {
     const response: Response = new Response();
     let nome: string;
     userList.forEach((us, index) => {
-      if(us.email === user.email){
+      if (us.email === user.email) {
         nome = user.nome;
         userList.splice(index, 1);
       }
     });
-    localStorage.setItem("userList", JSON.stringify(userList));
+    localStorage.setItem('userList', JSON.stringify(userList));
     response.ok = true;
-    response.message = "Usuário "+ nome +" excluído com sucesso";
+    response.message = 'Usuário ' + nome + ' excluído com sucesso';
     return response;
   }
 
@@ -60,15 +60,15 @@ export class LoginService {
     const response: Response = new Response();
     const userList: User[] = this.getUserList();
     let activeUser: User = new User();
-    let userExists: boolean = false;
-    let elementPosition : number;
-    userList.forEach((user, index) =>{
-      if (login.email === user.email){
+    let userExists = false;
+    let elementPosition: number;
+    userList.forEach((user, index) => {
+      if (login.email === user.email && login.senha === user.senha) {
         userExists = true;
         activeUser = user;
         activeUser.isActive = true;
         elementPosition = index;
-        localStorage.setItem("userList", JSON.stringify(userList));
+        localStorage.setItem('userList', JSON.stringify(userList));
       }
     });
     if (userExists) {
@@ -76,26 +76,26 @@ export class LoginService {
       response.ok = true;
     } else {
       response.ok = false;
-      response.message = "Email ou senha incorretos";
+      response.message = 'Email ou senha incorretos';
     }
     return response;
   }
 
   public logout(): void {
     const userList: User[] = this.getUserList();
-    const newUserList : User[] = [];
+    const newUserList: User[] = [];
     userList.forEach(user => {
       user.isActive = false;
       newUserList.push(user);
     });
-    localStorage.setItem("userList", JSON.stringify(userList));
+    localStorage.setItem('userList', JSON.stringify(userList));
   }
 
   public isAnyUserActive(): boolean {
     const userList: User[] = this.getUserList();
     let isUserActive = false;
     userList.forEach(user => {
-      if(user.isActive) {
+      if (user.isActive) {
         isUserActive = true;
       }
     })
@@ -106,7 +106,7 @@ export class LoginService {
     const userList: User[] = this.getUserList();
     let activeUser: User = new User();
     userList.forEach(user => {
-      if(user.isActive) {
+      if (user.isActive) {
         activeUser = user;
       }
     });

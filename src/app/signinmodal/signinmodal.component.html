@@ -5,7 +5,7 @@
     <mat-error *ngIf="emailControl.invalid">{{getEmailErro()}}</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Senha" type="password" [formControl]="senhaControl" [(ngModel)]="login.password">
+    <input matInput placeholder="Senha" type="password" [formControl]="senhaControl" [(ngModel)]="login.senha">
     <mat-error *ngIf="senhaControl.invalid">{{getSenhaErro()}}</mat-error>
   </mat-form-field>
 </div>
