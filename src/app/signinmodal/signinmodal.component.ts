@@ -30,7 +30,9 @@ export class SigninmodalComponent {
         this.dialogRef.close();
         this.router.navigate(['user']);
       }else {
-        this.snackBar.open('Email ou senha errada', 'Fechar');
+        this.snackBar.open('Email ou senha errada', 'Fechar', {
+          duration: 3000
+        });
       }
     }
   }

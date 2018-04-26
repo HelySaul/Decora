@@ -17,7 +17,7 @@
     <input matInput placeholder="Senha" type="password" [formControl]="senhaControl" [(ngModel)]="user.senha">
     <mat-error *ngIf="emailControl.invalid">{{getSenhaErro()}}</mat-error>
   </mat-form-field>
-  <mat-checkbox *ngIf="showActiveControl()" [(ngModel)]="user.isAdmin">Administrador</mat-checkbox>
+  <mat-checkbox *ngIf="showAdminControl()" [(ngModel)]="user.isAdmin">Administrador</mat-checkbox>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancelar</button>

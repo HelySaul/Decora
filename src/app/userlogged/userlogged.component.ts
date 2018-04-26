@@ -3,7 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../shared/shared-classes';
 import {LoginService} from '../services/login/login-service';
 import {SignupmodalComponent} from "../signupmodal/signupmodal.component";
-import {MatDialog} from "@angular/material";
+import {MatDialog, MatSnackBar} from "@angular/material";
+import {DeletemodalComponent} from "../deletemodal/deletemodal.component";
 
 @Component({
   selector: 'app-userlogged',
@@ -15,7 +16,7 @@ export class UserloggedComponent implements OnInit {
   user: User = new User();
   userList: User[] = [];
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private loginService: LoginService, public dialog: MatDialog) {
+  constructor(private loginService: LoginService, public dialog: MatDialog,  public snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -30,12 +31,35 @@ export class UserloggedComponent implements OnInit {
   }
 
   openSignUpModal(): void {
-    let dialogModalRef = this.dialog.open(SignupmodalComponent, {
+    let dialogSigninModalRef = this.dialog.open(SignupmodalComponent, {
       width: '250px',
     });
-    const sub = dialogModalRef.componentInstance.onAdd.subscribe(() => {
+    const sub = dialogSigninModalRef.componentInstance.onAdd.subscribe(() => {
       this.userList = this.loginService.getUserList();
     });
+  }
+
+  openDeleteModal(user: User):void {
+    let dialogDeleteModalRef = this.dialog.open(DeletemodalComponent, {
+      width: '300px',
+      data: {
+        nome: user.nome
+      }
+    });
+    const sub = dialogDeleteModalRef.componentInstance.onDelete.subscribe(() => {
+      console.log("hehehe");
+      const response = this.loginService.removeUser(user);
+      if(response.ok){
+        this.userList = this.loginService.getUserList();
+        this.snackBar.open(response.message, 'Fechar', {
+          duration: 3000
+        });
+      }
+    });
+  }
+
+  onDelete() {
+
   }
 
 }

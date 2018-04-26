@@ -2,29 +2,26 @@
   <mat-toolbar>
     Usuários
     <span class="fill-remaining-space"></span>
-    <button mat-button matTooltip="Usuário novo" matTooltipPosition="below" (click)="openSignUpModal()" *ngIf="user.isAdmin">
+    <button mat-button matTooltip="Usuário novo" matTooltipPosition="below" (click)="openSignUpModal()"
+            *ngIf="user.isAdmin">
       <i class="fas fa-plus"></i>
     </button>
   </mat-toolbar>
   <div class="space"></div>
-  <mat-accordion>
+  <mat-accordion class="headers-align">
     <mat-expansion-panel *ngFor="let useroflist of userList">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          Personal data
+          {{useroflist.nome}}
         </mat-panel-title>
         <mat-panel-description>
-          Type your name and age
+          {{useroflist.email}}
+          <mat-icon *ngIf="user.isAdmin && user.email !== useroflist.email" matTooltip="Excluir usuário" matTooltipPosition="below"
+                    (click)="openDeleteModal(useroflist)">delete
+          </mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
-
-      <mat-form-field>
-        <input matInput placeholder="First name">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput placeholder="Age">
-      </mat-form-field>
+      <strong>Telefone</strong>: {{useroflist.telefone}}
     </mat-expansion-panel>
   </mat-accordion>
 </div>

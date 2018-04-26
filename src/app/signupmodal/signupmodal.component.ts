@@ -1,9 +1,8 @@
 import {Component, EventEmitter, NgModule} from '@angular/core';
 import {MatDialogRef, MatSnackBar} from '@angular/material';
 import {FormControl, FormsModule, Validators} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
 import {Router} from '@angular/router';
-import {User, Response} from '../shared/shared-classes';
+import {Response, User} from '../shared/shared-classes';
 import {LoginService} from '../services/login/login-service';
 
 
@@ -23,8 +22,6 @@ export class SignupmodalComponent {
   emailControl = new FormControl('', [Validators.required, Validators.email, Validators.nullValidator]);
   telefoneControl = new FormControl('', [Validators.required, Validators.pattern(this.regexSoNumeros)]);
   senhaControl = new FormControl('', [Validators.required, Validators.nullValidator]);
-
-  users: Observable<any[]>;
 
   constructor(public dialogRef: MatDialogRef<SignupmodalComponent>, public snackBar: MatSnackBar,
               private router: Router, private loginService: LoginService) {
@@ -55,7 +52,7 @@ export class SignupmodalComponent {
 
   onRegister(): void {
     if (!this.nomeControl.invalid && !this.emailControl.invalid && !this.telefoneControl.invalid && !this.senhaControl.invalid) {
-      this.user.isActive = false;
+      this.user.isActive = !this.showAdminControl();
       if (typeof this.user.isAdmin == "undefined")
         this.user.isAdmin = false;
       const response: Response = this.loginService.addUser(this.user);
@@ -65,15 +62,19 @@ export class SignupmodalComponent {
           this.router.navigate(['user']);
         } else {
           this.onAdd.emit();
-          this.snackBar.open(response.message, 'Fechar');
+          this.snackBar.open(response.message, 'Fechar', {
+            duration: 3000
+          });
         }
       } else {
-        this.snackBar.open(response.message, 'Fechar');
+        this.snackBar.open(response.message, 'Fechar', {
+          duration: 3000
+        });
       }
     }
   }
 
-  showActiveControl() {
+  showAdminControl() {
     if (this.loginService.isAnyUserActive()) {
       if (this.loginService.getActiveUser().isAdmin) {
         return true;

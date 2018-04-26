@@ -1,7 +1,8 @@
 .user-list {
   width: 900px;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 
   .space {
     height: 20px;
@@ -10,4 +11,14 @@
 
 .fill-remaining-space {
   flex: 1 1 auto;
+}
+
+.headers-align {
+  .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
+    flex-basis: 0;
+  }
+  .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+  }
 }

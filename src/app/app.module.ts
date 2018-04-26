@@ -11,6 +11,7 @@ import {SigninmodalComponent} from './signinmodal/signinmodal.component';
 import {UserloggedComponent} from './userlogged/userlogged.component';
 import {LandingpageComponent} from './landingpage/landingpage.component';
 import {LoginService} from './services/login/login-service';
+import { DeletemodalComponent } from './deletemodal/deletemodal.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {LoginService} from './services/login/login-service';
     SignupmodalComponent,
     SigninmodalComponent,
     UserloggedComponent,
-    LandingpageComponent
+    LandingpageComponent,
+    DeletemodalComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +32,6 @@ import {LoginService} from './services/login/login-service';
   ],
   providers: [LoginService],
   bootstrap: [AppComponent],
-  entryComponents: []
+  entryComponents: [DeletemodalComponent]
 })
 export class AppModule { }

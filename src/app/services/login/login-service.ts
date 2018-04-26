@@ -40,8 +40,20 @@ export class LoginService {
     }
   }
 
-  public removeUser() {
-    return null;
+  public removeUser(user: User): Response {
+    const userList: User[] = this.getUserList();
+    const response: Response = new Response();
+    let nome: string;
+    userList.forEach((us, index) => {
+      if(us.email === user.email){
+        nome = user.nome;
+        userList.splice(index, 1);
+      }
+    });
+    localStorage.setItem("userList", JSON.stringify(userList));
+    response.ok = true;
+    response.message = "Usuário "+ nome +" excluído com sucesso";
+    return response;
   }
 
   public login(login: Login): Response {
@@ -49,17 +61,18 @@ export class LoginService {
     const userList: User[] = this.getUserList();
     let activeUser: User = new User();
     let userExists: boolean = false;
+    let elementPosition : number;
     userList.forEach((user, index) =>{
       if (login.email === user.email){
         userExists = true;
         activeUser = user;
         activeUser.isActive = true;
-        userList.splice(index, 1);
+        elementPosition = index;
         localStorage.setItem("userList", JSON.stringify(userList));
       }
     });
     if (userExists) {
-      this.addUser(activeUser);
+      userList.splice(elementPosition, 1, activeUser);
       response.ok = true;
     } else {
       response.ok = false;

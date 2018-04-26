@@ -5,7 +5,7 @@ import {
   MatDialogModule,
   MatDividerModule,
   MatExpansionModule,
-  MatFormFieldModule,
+  MatFormFieldModule, MatIconModule,
   MatInputModule,
   MatSidenavModule,
   MatSnackBarModule,
@@ -25,7 +25,8 @@ import {
     MatExpansionModule,
     MatDividerModule,
     MatTooltipModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatIconModule,
   ],
   exports: [
     CommonModule,
@@ -39,7 +40,8 @@ import {
     MatExpansionModule,
     MatDividerModule,
     MatTooltipModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatIconModule,
   ],
   declarations: []
 })
